@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+
+#cookieLawBlock{
+	position: fixed; width:100%; padding:20px; background: rgba(0,0,0,0.8); color:#FFF;
+	font-family: Arial; font-size:12px;
+	bottom:0px; z-index: 9999999999;
+}
+
+#cookieLawBlock a{
+	color:#FFF;
+	text-decoration: underline;
+}
+
+#cookieLawBlock a.btn-cookies{
+	display: block; float:right; background-color: #FFF; color:#000; padding:8px 20px; margin:20px; text-decoration: none;
+}
+
+#cookieLawBlock .cookieFullPolicy{
+	display: none; height:200px; overflow: auto; width:100%;
+}
+
+#cookieLawBlock .cookieFullPolicy h3{
+	font-size:14px;
+}
+
+#cookieLawBlock .cookieFullPolicy h4{
+	font-size:13px;
+}

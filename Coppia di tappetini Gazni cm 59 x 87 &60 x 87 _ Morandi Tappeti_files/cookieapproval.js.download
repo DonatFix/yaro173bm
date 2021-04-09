@@ -1,0 +1,80 @@
+var cookieName='cookiePolicyApprovedMoranditappeti_it';
+
+(function(){
+	
+	function getApprovalCookie()
+	{
+	    var i,x,y,ARRcookies=document.cookie.split(";");
+
+	    for (i=0;i<ARRcookies.length;i++)
+	    {
+	        x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+	        y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+	        x=x.replace(/^\s+|\s+$/g,"");
+	        if (x==cookieName)
+	        {
+	            return unescape(y);
+	        }
+	     }
+	}
+
+	function initCookie(){
+		// prima devo controllare se c'è il cookie.
+		if(!getApprovalCookie()) createCookieApproval();
+	}
+
+	function showAllCookiePolicy(){
+		 document.getElementById('cookieFullPolicy').style.display = 'block';
+	}
+	
+	function deleteCookieAlert(){
+		// scrivo il cookie
+		setCookiePolicy();
+		var DivToRemove = document.getElementById('cookieLawBlock');
+		document.getElementsByTagName('body')[0].removeChild(DivToRemove);
+	}
+
+	function setCookiePolicy() {
+		var expiration_date = new Date();
+		var cookie_string = '';
+		expiration_date.setFullYear(expiration_date.getFullYear() + 1);
+		// Build the set-cookie string:
+		cookie_string = cookieName+"=1; path=/; expires=" + expiration_date.toGMTString();
+		// Create/update the cookie:
+		document.cookie = cookie_string;
+	}
+
+	function createCookieApproval(){
+		var iDiv = document.createElement('div');
+		iDiv.id = 'cookieLawBlock';
+		iDiv.className = 'cookieLawBlock';
+		document.getElementsByTagName('body')[0].appendChild(iDiv);
+		document.getElementById('cookieLawBlock').innerHTML = '<a href="#" class="btn-cookies" id="cookies-allow">OK</a>Utilizziamo i cookie tecnici per garantire la funzionalit&agrave; del sito  in modo da offrirvi la migliore esperienza di navigazione. Per saperne di pi&ugrave; e per avere informazioni su come impedire l&rsquor;uso dei cookie consulta la nostra <a href="/cookie-policy/" rel="nofollow">COOKIES POLICY</a><br>Continuando a navigare sul sito, accetti di utilizzare i cookie.';
+		
+		var iDiv2 = document.createElement('div');
+		iDiv2.id = 'cookieFullPolicy';
+		iDiv2.className = 'cookieFullPolicy';
+		iDiv.appendChild(iDiv2);
+		/*
+		document.getElementById('cookieFullPolicy').innerHTML += '<div class="cookieFullPolicy">';
+		document.getElementById('cookieFullPolicy').innerHTML += '<h3>INFORMAZIONI SUI COOKIES</h3>';
+        document.getElementById('cookieFullPolicy').innerHTML += '<h4>Che cosa &egrave; un cookie?</h4><p>Che cosa &egrave; un cookie&quest; Un cookie &egrave; un piccolo file di testo che viene memorizzato dal computer nel momento in cui un sito web viene visitato da un utente&period; Il testo memorizza informazioni che il sito &egrave; in grado di leggere nel momento in cui viene consultato in un secondo momento&period; Alcuni di questi cookie sono necessari al corretto funzionamento del sito&comma; altri sono invece utili al visitatore perch&eacute; in grado di memorizzare in modo sicuro ad esempio il nome utente o le impostazioni di lingua&period; Il vantaggio di avere dei cookie installati nel proprio pc &egrave; quello di non aver pi&ugrave; bisogno di compilare le stesse informazioni ogni qualvolta si voglia accedere ad un sito visitato in precedenza&period;</p>';
+        document.getElementById('cookieFullPolicy').innerHTML += '<h4>Perch&eacute; utilizziamo i cookie&quest;</b></h4><p>Utilizziamo i cookie al fine di fornire ai propri utenti un&rsquor;esperienza di navigazione modellata il pi&ugrave; possibile intorno ai suoi gusti e preferenze&period; Tramite i cookie si fa in modo che ad ogni visita sul sito non si debbano ricevere o inserire le stesse informazioni&period; I cookie vengono utilizzati anche al fine di ottimizzare le prestazioni del sito web&colon; essi infatti rendono pi&ugrave; facile sia la navigazione che la ricerca veloce di elementi specifici all&rsquor;interno del sito&period;</p>';
+        document.getElementById('cookieFullPolicy').innerHTML += '<h4>Cookie strettamente necessari (cookie tecnici)</h4><p>Questi cookie sono costantemente abilitati e sono necessari per eseguire le funzionalit&agrave; di base del sito&period; Si tratta di cookie che consentono di riconoscere l&rsquor;utente che utilizza il sito durante un&rsquor;unica sessione o&comma; se richiesto&comma; anche nelle sessioni successive&period; Questo tipo di cookie consente di riempire il carrello&comma; eseguire facilmente le operazioni di pagamento&comma; risolvere problemi legati alla sicurezza e garantire conformit&agrave; alle normative vigenti&period;</p>';
+        document.getElementById('cookieFullPolicy').innerHTML += '<h4>Cookie per le prestazioni (cookie analytics)</h4><p>&Egrave; possibile che da parte nostra &lpar;o dei i fornitori di servizi che operano per nostro conto&rpar; vengano inseriti dei cookie per le prestazioni nel tuo dispositivo di navigazione&period; Le informazioni raccolte mediante i cookie per le prestazioni sono utilizzate esclusivamente da noi o nel nostro interesse&period;&NewLine;I cookie per le prestazioni raccolgono informazioni anonime relative al modo in cui gli utenti utilizzano il sito Web e le sue varie funzionalit&agrave;&period; Ad esempio&comma; i nostri cookie per le prestazioni raccolgono informazioni in merito alle pagine del sito che visiti pi&ugrave; spesso e alle nostre pubblicit&agrave; che compaiono su altri siti Web con cui interagisci&comma; oltre a verificare se apri e leggi le comunicazioni che ti inviamo e se ricevi messaggi di errore&period; Le informazioni raccolte possono essere utilizzate per personalizzare la tua esperienza online mostrando contenuti specifici&period; I cookie per le prestazioni servono anche per limitare il numero di visualizzazioni di uno stesso annuncio pubblicitario&period; I nostri cookie per le prestazioni non raccolgono informazioni di carattere personale&period;&NewLine;Continuando a utilizzare questo sito Web e le sue funzionalit&agrave;&comma; autorizzi noi &lpar;e gli inserzionisti esterni di questo sito Web&rpar; a inserire cookie per le prestazioni nel tuo dispositivo di navigazione&period; Per eliminare o gestire i cookie per le prestazioni&comma; consultare l&apos;ultima sezione della presente Cookie Policy&period;</p>';
+        document.getElementById('cookieFullPolicy').innerHTML += '<p>Questi cookie sono utilizzati per memorizzare le scelte effettuate &lpar;preferenza della lingua&comma; paese o altre impostazioni online&rpar; e per fornire le funzionalit&agrave; personalizzate od ottimizzate selezionate dall&apos;utente&period; I cookie funzionali possono essere utilizzati per offrirti servizi online o per evitare che ti vengano offerti servizi che hai rifiutato in passato&period;&NewLine;Peraltro informiamo che tecnicamente &egrave; possibile autorizzare inserzionisti o terze parti a fornire contenuti e altre esperienze online tramite questo sito Web&period; In questo caso&comma; la terza parte in questione potrebbe inserire i propri cookie per funzionalit&agrave; nel tuo dispositivo e utilizzarli&comma; in modo analogo a noi&comma; al fine di fornirti funzionalit&agrave; personalizzate e ottimizzare la tua esperienza d&apos;uso&period; Proseguendo nella navigazione autorizzi l&apos;utilizzo da parte nostra dei cookie funzionali necessari a offrirti tali esperienze&period;</p>';
+		document.getElementById('cookieFullPolicy').innerHTML += '<h4>Cookie funzionali (cookie di profilazione)</h4><p>E&rsquor; possibile che noi o i fornitori di servizi che operano per nostro conto utilizzino cookie funzionali&period;</p>';
+		document.getElementById('cookieFullPolicy').innerHTML += '<h4>Come posso disattivare i cookie?</h4><p>&Egrave; possibile modificare il browser per disattivare i cookie tramite una procedura molto semplice&period; Attenzione&colon; disattivando i cookie sia nome utente che password non saranno pi&ugrave; memorizzati sul box di login del sito&period;</p>';
+		document.getElementById('cookieFullPolicy').innerHTML += '<p>Firefox: Apri Firefox&NewLine;Premi il pulsante &quot;Alt&quot; sulla tastiera&NewLine;Nella barra degli strumenti situata nella parte superiore del browser&comma; seleziona &quot;Strumenti&quot; e successivamente &quot;Opzioni&quot;&NewLine;Seleziona quindi la scheda &quot;Privacy&quot;&NewLine; Vai su &quot;Impostazioni Cronologia&colon;&quot; e successivamente su &quot;Utilizza impostazioni personalizzate&quot; &period; Deseleziona &quot;Accetta i cookie dai siti&quot; e salva le preferenze&period;</p>';
+		document.getElementById('cookieFullPolicy').innerHTML += '<p>Internet Explorer&colon;&NewLine;&NewLine;Apri Internet Explorer&NewLine;Clicca sul pulsante &quot;Strumenti&quot; e quindi su &quot;Opzioni Internet&quot;&NewLine;Seleziona la scheda &quot;Privacy&quot; e sposta il dispositivo di scorrimento sul livello di privacy che desideri impostare &lpar;verso l&rsquor;alto per bloccare tutti i cookie o verso il basso per consentirli tutti&rpar;&NewLine; Quindi clicca su OK</p>';
+		document.getElementById('cookieFullPolicy').innerHTML += '<p>Google Chrome: Apri Google Chrome Clicca sull’icona "Strumenti" Seleziona "Impostazioni" e successivamente "Impostazioni avanzate" Seleziona "Impostazioni dei contenuti" sotto la voce "Privacy" Nella scheda "Cookie" è possibile deselezionare i cookie e salvare le preferenze</p>';
+		document.getElementById('cookieFullPolicy').innerHTML += '<p>Safari: Apri Safari Scegli "Preferenze" nella barra degli strumenti, quindi seleziona il pannello "Sicurezza" nella finestra di dialogo che segue Nella sezione &quot;Accetta cookie&quot; &egrave; possibile specificare se e quando Safari deve salvare i cookie dai siti web&period; Per ulteriori informazioni clicca sul pulsante di Aiuto &lpar; contrassegnato da un punto interrogativo&rpar; Per maggiori informazioni sui cookie che vengono memorizzati sul vostro computer, clicca su "Mostra cookie"</p>';
+		*/
+		//document.getElementById("showCompleteCookiePolicy").addEventListener("click", showAllCookiePolicy);
+		document.getElementById("cookies-allow").addEventListener("click", deleteCookieAlert);
+
+	}	
+
+	window.addEventListener("load", initCookie, false);
+
+})();
